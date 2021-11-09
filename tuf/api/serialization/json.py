@@ -9,6 +9,7 @@ verification.
 """
 
 import json
+from typing import Type, TypeVar
 
 from securesystemslib.formats import encode_canonical
 
@@ -25,15 +26,26 @@ from tuf.api.serialization import (
     SignedSerializer,
 )
 
+# TODO: Adopt in MetadataDeserializer and define below generic types there
+
+
+# Generic type for **instances** of subclasses of Metadata
+TMetadata = TypeVar("TMetadata", bound=Metadata)
+
+# Generic type for **subclasses** of Metadata
+CMetadata = Type[TMetadata]
+
 
 class JSONDeserializer(MetadataDeserializer):
     """Provides JSON to Metadata deserialize method."""
 
-    def deserialize(self, raw_data: bytes) -> Metadata:
+    def deserialize(
+        self, raw_data: bytes, cls: CMetadata = Metadata
+    ) -> TMetadata:
         """Deserialize utf-8 encoded JSON bytes into Metadata object."""
         try:
             json_dict = json.loads(raw_data.decode("utf-8"))
-            metadata_obj = Metadata.from_dict(json_dict)
+            metadata_obj = cls.from_dict(json_dict)
 
         except Exception as e:
             raise DeserializationError from e

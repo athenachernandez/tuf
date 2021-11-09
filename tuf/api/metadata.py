@@ -218,7 +218,7 @@ class Metadata(Generic[T]):
 
             deserializer = JSONDeserializer()
 
-        return deserializer.deserialize(data)
+        return deserializer.deserialize(cls, data)
 
     def to_bytes(
         self, serializer: Optional[MetadataSerializer] = None
