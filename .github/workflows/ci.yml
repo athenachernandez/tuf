@@ -2,6 +2,9 @@ name: CI
 
 on:
   push:
+    # TODO: Should we restrict to vX.Y.Z tags?
+    tags:
+      - v*
     branches:
       - develop
   pull_request:

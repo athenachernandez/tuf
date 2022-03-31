@@ -125,7 +125,26 @@ def progress(s: str) -> None:
     print(f"  {s}...", end="\r", flush=True)
 
 
-def main() -> int:
+def review(archive_path: str) -> int:
+    with TemporaryDirectory() as build_dir, TemporaryDirectory() as download_dir:
+        progress("Building release")
+        build_version = build(build_dir)
+        finished(f"Built release {build_version}")
+
+        progress("Unzipping local artifacts archive")
+        with ZipFile(archive_path) as zip_ref:
+            zip_ref.extractall(download_dir)
+
+        # TODO: warn on version mismatch
+        # TODO: warn on different files
+        # TODO: assert equal whl and tar.gz
+
+        if success:
+            finished("Github CD build artifacts match the local build. Release!")
+
+    return 1
+
+def verify() -> int:
     success = True
     with TemporaryDirectory() as build_dir:
 
@@ -165,6 +184,15 @@ def main() -> int:
 
     return 0 if success else 1
 
+def main() -> int:
+    if len(sys.argv) > 2:
+        print(f"{sys.argv[0]} [path/to/build/artifacts/archive]")
+        return 1
+
+    if len(sys.argv) == 2:
+        return review(sys.argv[1])
+
+    return verify()
 
 if __name__ == "__main__":
     sys.exit(main())

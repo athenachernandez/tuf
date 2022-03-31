@@ -3,13 +3,14 @@ concurrency: cd
 
 # Trigger workflow on release tag push
 on:
-  push:
-    # TODO: Should we restrict to vX.Y.Z tags?
-    tags: v*
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
 
 jobs:
   build:
     name: Build
+    if: false # ${{ github.event.workflow_run.conclusion == 'success'  &&  github.event.workflow_run.ref == release tag}} # TODO: Check syntax
     runs-on: ubuntu-latest
     steps:
       - name: Checkout release tag
@@ -51,3 +52,19 @@ jobs:
           # TODO: Change to PyPI and update token
           repository_url: https://test.pypi.org/legacy/
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
+  release-on-github:
+    name: Release on GitHub
+    runs-on: ubuntu-latest
+    needs: build
+    environment: release
+    steps:
+      - name: Fetch build artifacts
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
+        with:
+          name: build-artifacts
+          path: dist
+      - name: Publish GitHub release with build artifacts
+        uses: softprops/action-gh-release@v1 # TODO: Use commit id instead of version
+        with:
+          files: dist/*
