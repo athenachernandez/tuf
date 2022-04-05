@@ -1,17 +1,18 @@
 name: CD
 concurrency: cd
 
-# Trigger workflow on release tag push
+# Trigger workflow on completed CI, if successful and a tag
 on:
-  push:
-    # TODO: Should we restrict to vX.Y.Z tags?
-    tags: v*
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    if: ${{ github.ref_type == 'tag' }}
+    # TODO: Should we restrict to vX.Y.Z tags? How?
+    if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.ref_type == 'tag' }}
     outputs:
       release_id: ${{ steps.gh-release.outputs.id }}
     steps:
