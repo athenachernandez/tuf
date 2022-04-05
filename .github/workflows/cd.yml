@@ -35,7 +35,6 @@ jobs:
         with:
           name: ${{ github.ref_name }}-rc
           tag_name: ${{ github.ref }}
-          # prerelease: true # <- verify_release script 'get_github_version' ignores pre-releases (and drafts)
           body: "Release waiting for review..."
           files: dist/*
 
