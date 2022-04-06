@@ -13,11 +13,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - run:
-            echo ${{ github.ref }}
-            echo ${{ github.ref_name }}
-            echo ${{ github.ref_type }}
-            echo ${{ github.event.workflow_run.head_branch }}
+        - uses: actions/github-script@9ac08808f993958e9de277fe43a64532a609130e
+          with:
+            script: |
+              console.log(JSON.stringify(context.payload))
+              console.log(JSON.stringify(context.payload.workflow_run))
+
   #   # TODO: Should we restrict to vX.Y.Z tags? How?
   #   if: ${{ github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.ref_type == 'tag' }}
   #   outputs:
