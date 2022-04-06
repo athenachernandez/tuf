@@ -18,7 +18,7 @@ from filecmp import dircmp
 from tempfile import TemporaryDirectory
 
 try:
-    import build as _  # 'build' is not needed here but only in subprocess
+    import build as _  # type: ignore
     import requests
 except ImportError:
     print("Error: verify_release requires modules 'requests' and 'build':")
