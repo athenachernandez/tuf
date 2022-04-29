@@ -60,7 +60,7 @@ path = "tuf/__init__.py"
 path = "hatch_build_in_toto.py"
 dependencies = [
   "bpython",
-  "in-toto"
+  "in-toto[pynacl]"
 ]
 
 [tool.hatch.build.targets.sdist]
