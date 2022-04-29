@@ -56,6 +56,13 @@ Source = "https://github.com/theupdateframework/python-tuf"
 [tool.hatch.version]
 path = "tuf/__init__.py"
 
+[tool.hatch.build.hooks.custom]
+path = "hatch_build_in_toto.py"
+dependencies = [
+  "bpython",
+  "in-toto"
+]
+
 [tool.hatch.build.targets.sdist]
 include = [
   "/docs",
