@@ -58,6 +58,7 @@ class InTotoBuildHook(BuildHookInterface):
                 f"Exactly one of `{EnvVars.KEY} or {EnvVars.GPG_KEYID}` must be set"
             )
 
+        self.key = None
         if key_data:
             self.key = json.loads(key_data)
 
