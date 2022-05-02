@@ -19,20 +19,22 @@ from in_toto.models.metadata import Metablock
 from in_toto.runlib import record_artifacts_as_dict
 
 
+# TODO: Is there a better way to configure this? KEY makes sense as envvar, but
+# non-confidential config would be nice as arg. Can we use `build`s `--config-setting`?
 class EnvVars:
     KEY = "HATCH_IN_TOTO_KEY"
     GPG_KEYID = "HATCH_IN_TOTO_GPG_KEYID"
 
 
-# Define filters for recording materials in the project directory
+# Define exclude filters for recording materials in the project directory
 # NOTE: No filters needed for products, because they are recorded explicitly
-# NOTE: Leading wildcards for path fragments that seemingly start at root are needed,
-# because the actual root of the path is /. in-toto only strips the left part in the end.
-# paths
+# NOTE: in-toto applies filters on non-left-stripped paths, hence the double asterisks
+# TODO: Consider configuration via pyproject.toml
+# see https://ofek.dev/hatch/latest/config/build/#build-hooks
 MATERIAL_EXCLUDES = [
     "dist",
-    "*/docs/build",
-    "*/tests/htmlcov",
+    "**/docs/build",
+    "**/tests/htmlcov",
     ".*",
     "*~",
     "*.egg-info",
