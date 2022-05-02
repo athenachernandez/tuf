@@ -37,6 +37,7 @@ jobs:
         run: python3 -m build --sdist --wheel --outdir dist/ .
         env:
           HATCH_BUILD_HOOK_ENABLE_CUSTOM: true
+          HATCH_IN_TOTO_KEY: ${{ secrets.HATCH_IN_TOTO_KEY }}
 
       - id: gh-release
         name: Publish GitHub release candiate
