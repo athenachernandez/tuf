@@ -57,6 +57,7 @@ Source = "https://github.com/theupdateframework/python-tuf"
 path = "tuf/__init__.py"
 
 [tool.hatch.build.hooks.custom]
+enable-by-default = false
 path = "hatch_build_in_toto.py"
 dependencies = [
   "bpython",
