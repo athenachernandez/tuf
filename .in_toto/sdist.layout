@@ -1,0 +1,99 @@
+{
+ "signatures": [
+  {
+   "keyid": "8ba69b87d43be294f23e812089a2ad3c07d962e8",
+   "other_headers": "04000108001d1621048ba69b87d43be294f23e812089a2ad3c07d962e80502627139b4",
+   "signature": "a2438283f083970a408499a92ec391a3222fb801b3bf4607d61518494d14d40fab5aed508416a68580c53a6aed95d333e8b91c71a6d93a82d9569629c6d583a91cf0869d0ba8d59e8a6645f4405038f20dc7d84cac987fce97a7f09b271a5b9c0fdd05640f68493d44fd70ee75c867d9659dfedb7ea99f2b932f4f301693cf5aa8e64f2e463dee9bb435d61dd456ea35e105cbe0d2ff2bf19b61decf0294e10a923401b4079a035b3e24cee6cf714ed936dcc98061e73bc2fba3003e83f2ffea8a8ee8db8c069d2657d48c1e709f205a3d111d879351b254f167f13d0c18e7d8c39e437d42ba1e50fd65ed80489d2595a7e7d23261f702120e379cd6bb5f23bd08a2f84970348b6a388ab9011d0060802cbe55ba7a6c62574852dcb2fdd41664f10464d43d0838a29ae7db784284a8a1fd659ea583d74f0ce8ac659efb3b280c312cd79b3fc6079249f006ab217ebcf16d1308d59717645c31ea5ef9e58c6f255c58a68700818bc41766da90cc5871c7932dd0411f8a90f8f2269a2cc00f01c56afcea1c470a9fa779bedd07756fc3f40ab7944282300cb5805830b8bf66668a796cf6ec787f1296e8618c9220bc15ecc9f0a6352c75089608c0bd77a5d372c25b1bfd458e035e53aa0c386819fbc73140631ae3752ae1aaf5e444ada60952796d5cec20d7d3a8b19bf74fe5d1d01e51fc53e5dba6ca782844c0b81bdc9cdc0c"
+  }
+ ],
+ "signed": {
+  "_type": "layout",
+  "expires": "2023-05-03T16:18:27Z",
+  "inspect": [],
+  "keys": {
+   "5c98490d78e6ac4401b065870b6f612587ff69dd89176099af95d1c4615afd8f": {
+    "keyid": "5c98490d78e6ac4401b065870b6f612587ff69dd89176099af95d1c4615afd8f",
+    "keytype": "ed25519",
+    "keyval": {
+     "public": "d685e2c2cfd1f2d79f5c301b25b3e0bc83f951c47d2d13a93d715fed721ca20d"
+    },
+    "scheme": "ed25519"
+   },
+   "8ba69b87d43be294f23e812089a2ad3c07d962e8": {
+    "creation_time": 1459539420,
+    "hashes": [
+     "pgp+SHA2"
+    ],
+    "keyid": "8ba69b87d43be294f23e812089a2ad3c07d962e8",
+    "keyval": {
+     "private": "",
+     "public": {
+      "e": "010001",
+      "n": "b5f870cd6fd16f1e938aa252f40b5c8801fd08f0da2d5ef91ad90de08f88d5ee57b74788b6353eb56d5a822d476895e285b5150eb366b80d79857b077f926d62d9c5b642262d9fe26e00421a4964b79549be5800dbf25bea4ba4b5afe147daf091965ec3efc528bcd2389ddb44d6bfd3fda05a284ab93777ab4a011f897aff01448481a3a16f0c6ea716a72028be03d0895c04165f50850f40d2e8b89a4187233e6f30dcbe17978bf240a487f69b2dd8474c7185e727fa0308f47cbbd10e73f369cea64ae31af8ef1626a09fac3bc7ec92883126cab6888a67c48bc76796e2c46d5fbc69ac0599c7b7d91489b6527b7e7076e57f0f5ca604d8e058e0fe5682279fd6d408b0ac5a280253db7c451d0b49dc6da56f80021668d48a5c24a56ce0ba3d1a2b217644cb5f01cdf61a89638a22ff3f5e4614e9893e67c1f65f3fe8f54efa346fb9abaee2f13c1ebb7bccddb848015acee5916b51d9696c26bb6932ac4f5ac2c2fa9fae012198a33e07740e92bec18deea3d6d1fd635d8bd760c54cb490183adcf406737d14c8d9bbbb367f8d30a160ee081964baf0b34c2a49d3c0a5dbc7f7544c7b71bbf5a5cf516867f0fcfde125278b466de1ea3e8b1f789a858d7226488cca4deed3dcdd2f7a8bb9f0d93441699e17d7b558c30ad991d7c2b7f70bc3aea5a53a36a619bfb11ee282fbc2f475af9591c8bd3fd2d17e9daf8df48e19"
+     }
+    },
+    "method": "pgp+rsa-pkcsv1.5",
+    "subkeys": {
+     "9ec19a2a22014f6edd568284a2da0fecf6107587": {
+      "creation_time": 1459539420,
+      "hashes": [
+       "pgp+SHA2"
+      ],
+      "keyid": "9ec19a2a22014f6edd568284a2da0fecf6107587",
+      "keyval": {
+       "private": "",
+       "public": {
+        "e": "010001",
+        "n": "bc5c725e00a69c30038b4273129d0b41e84b947f11ba770051a8ac81422d13286b3c8b1fde5f1e0a3bb25b0aefbd3a7ddfe811b1e16f54172b73f00a0afa89c2b8a8c93ae95b0c1f691f1c813059b292d217e470194e0a096383eaf80da0cf3cfdedf5a3b279d61c09ebb3e0db9c71dac3990b415cf650ec4f4f79cbfb602c2d4184a9df8d7da99e9547e7c35886bf453e7098e387cef3fc651e49f618edd73cd7fef6ecf5361e5fa15faf84c0a9e7521cb12cb473f0255e05d4833bb9675988aab6a014f7eafe0b6abaa9b156912317a98c659829833c80f066173dd82cc08ad62eadf91890fe2cd07e17c10ed04f689b67bf363fb3a8e8c940b76f365e880d09ea3528305d5f24197ec616f19cf275644552eacc8489f46485a4df5ce1047f53d95543c7a1379fccb9c13cca664533c777c54346697504c79580053838486356e2fbe50885a7ff225ac1faa0dc0e1b8866f732aae27388728b018bfae72524a07bf7bf2a879c0476039b64277a0fc80950f057cbebdd5e135af4ebbbbff32570f55ccc276c1dee8285f20a82fbaf8135cb2c2efdf122a7047914412e040d2b6fdcd26ee0eba0c8293d41cf223a65f7616f1899d4d2ef58acf7bb6f1e3584bfd8009b21cc42cf2b60b4bced5cfbf2d03dff7259a06a5aa2c37b9d631271b5e3d28c46b60f6d77386770f01fc2ca26305be0e0e7f32560763e9625e802380ddb"
+       }
+      },
+      "method": "pgp+rsa-pkcsv1.5",
+      "type": "rsa",
+      "validity_period": 220035752
+     }
+    },
+    "type": "rsa",
+    "validity_period": 221762456
+   }
+  },
+  "readme": "",
+  "steps": [
+   {
+    "_type": "step",
+    "expected_command": [],
+    "expected_materials": [],
+    "expected_products": [],
+    "name": "tag",
+    "pubkeys": [
+     "8ba69b87d43be294f23e812089a2ad3c07d962e8"
+    ],
+    "threshold": 1
+   },
+   {
+    "_type": "step",
+    "expected_command": [],
+    "expected_materials": [
+     [
+      "MATCH",
+      "*",
+      "WITH",
+      "MATERIALS",
+      "FROM",
+      "tag"
+     ],
+     [
+      "DISALLOW",
+      "*"
+     ]
+    ],
+    "expected_products": [],
+    "name": "sdist",
+    "pubkeys": [
+     "5c98490d78e6ac4401b065870b6f612587ff69dd89176099af95d1c4615afd8f",
+     "8ba69b87d43be294f23e812089a2ad3c07d962e8"
+    ],
+    "threshold": 2
+   }
+  ]
+ }
+}

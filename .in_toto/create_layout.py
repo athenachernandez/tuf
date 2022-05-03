@@ -26,11 +26,17 @@ for build in ["sdist", "wheel"]:
     for gpg_keyid in [cd_key] + list(maintainer_keys.values()):
         layout.add_functionary_key(gpg_keyid)
 
+    tag_step = Step(name="tag")
+    tag_step.pubkeys = maintainer_keyids
+    tag_step.threshold = 1
+
     build_step = Step(name=build)
     build_step.pubkeys = [cd_key["keyid"]] + maintainer_keyids
     build_step.threshold = 2
+    build_step.add_material_rule_from_string("MATCH * WITH MATERIALS FROM tag")
+    build_step.add_material_rule_from_string("DISALLOW *")
 
-    layout.steps = [build_step]
+    layout.steps = [tag_step, build_step]
 
     metablock = Metablock(signed=layout)
     metablock.dump(f"{build}.layout")

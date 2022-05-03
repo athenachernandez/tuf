@@ -9,6 +9,12 @@ Hooks into the hatch build process to record the used sources as materials and t
 artifact(s) as products, signing the resulting link metadata with a configured
 functionary key.
 
+
+    export HATCH_BUILD_HOOK_ENABLE_CUSTOM=true
+    export HATCH_IN_TOTO_GPG_KEYID=<gpg key id>
+        **OR** export HATCH_IN_TOTO_KEY=<in-toto ed25519 private key json data>
+    python -m build
+
 """
 import json
 import os
@@ -18,6 +24,7 @@ from in_toto.models.link import FILENAME_FORMAT, Link
 from in_toto.models.metadata import Metablock
 from in_toto.runlib import record_artifacts_as_dict
 
+IN_TOTO_DIR = ".in_toto"
 
 # TODO: Is there a better way to configure this? KEY makes sense as envvar, but
 # non-confidential config would be nice as arg. Can we use `build`s `--config-setting`?
@@ -92,4 +99,4 @@ class InTotoBuildHook(BuildHookInterface):
             step_name=self.target_name, keyid=sig["keyid"]
         )
 
-        link.dump(os.path.join(self.directory, link_filename))
+        link.dump(os.path.join(IN_TOTO_DIR, link_filename))

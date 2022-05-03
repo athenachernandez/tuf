@@ -24,6 +24,9 @@ tests/htmlcov/
 .pre-commit-config.yaml
 .vscode
 
+# in-toto link files
+*.link*
+
 # Debian generated files
 debian/.debhelper/
 debian/*-stamp
