@@ -18,7 +18,7 @@ in-toto-run \
   --step-name tag \
   --gpg ${gpg_keyid} \
   --materials . \
-  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc'
+  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc' \
   --metadata-directory .in_toto \
   -- git tag --sign ${tag_name} -m "${tag_name}"
 
@@ -35,7 +35,7 @@ in-toto-record start \
   --step-name sdist \
   --gpg ${gpg_keyid} \
   --materials . \
-  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc'
+  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc' \
 
 python3 -m build --sdist --outdir dist/ .
 
@@ -53,7 +53,7 @@ in-toto-record start \
   --step-name wheel \
   --gpg ${gpg_keyid} \
   --materials . \
-  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc'
+  --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc' \
 
 python3 -m build --wheel --outdir dist/ .
 
