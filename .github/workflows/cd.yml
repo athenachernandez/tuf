@@ -31,7 +31,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install build dependency
-        run: python3 -m pip install --upgrade pip build in-toto
+        run: python3 -m pip install --upgrade pip build in-toto[pynacl]
 
       - name: Build binary wheel and source tarball
         env:
