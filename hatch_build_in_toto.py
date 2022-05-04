@@ -35,17 +35,16 @@ class EnvVars:
 
 # Define exclude filters for recording materials in the project directory
 # NOTE: No filters needed for products, because they are recorded explicitly
-# NOTE: in-toto applies filters on non-left-stripped paths, hence the double asterisks
 # TODO: Consider configuration via pyproject.toml
 # see https://ofek.dev/hatch/latest/config/build/#build-hooks
 MATERIAL_EXCLUDES = [
+    "__pycache__",
+    "build",
     "dist",
-    "**/docs/build",
-    "**/tests/htmlcov",
+    "htmlcov",
     ".*",
     "*~",
     "*.egg-info",
-    "*.link*",
     "*.pyc",
 ]
 
