@@ -10,7 +10,7 @@ in-toto-run \
   --gpg ${gpg_keyid} \
   --metadata-directory .in_toto \
   --materials . \
-  --exclude  '__pycache__' 'build' 'dist' 'htmlcov' '.*' '*~' '*.egg-info' '*.pyc' \
+  --exclude  '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc' \
   -- git tag --sign ${tag_name} -m "${tag_name}"
 
 ```
