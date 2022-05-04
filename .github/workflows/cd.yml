@@ -34,7 +34,55 @@ jobs:
         run: python3 -m pip install --upgrade pip build
 
       - name: Build binary wheel and source tarball
-        run: python3 -m build --sdist --wheel --outdir dist/ .
+        run: |
+            # Make signing key from GitHub secret available to in-toto commands
+            # FIXME: DO NOT PIPE CLEAR TEXT SIGNING KEY TO FILE!
+            echo ${{ secrets.HATCH_IN_TOTO_KEY }} > signing_key
+
+            # Generate separate attestations for building sdist and wheel
+            # NOTE: We have to use in-toto-record instead of the simpler in-toto-run,
+            # because in-toto-run does not support different exclude patterns for
+            # materials and products (see 'dist').
+
+            version=`python3 -c 'import tuf; print(tuf.__version__)'`
+
+            # Generate attestation for sdist build
+            in-toto-record start \
+              --step-name sdist \
+              --key signing_key \
+              --key-type ed25519 \
+              --materials . \
+              --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc'
+
+            python3 -m build --sdist --outdir dist/ .
+
+            in-toto-record stop \
+              --step-name sdist \
+              --key signing_key \
+              --key-type ed25519 \
+              --products dist/tuf-${version}.tar.gz \
+              --metadata-directory .in_toto
+
+
+            # Generate attestation for wheel build
+            in-toto-record start \
+              --step-name wheel \
+              --key signing_key \
+              --key-type ed25519 \
+              --materials . \
+              --exclude '__pycache__' 'build' 'dist' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc'
+
+            python3 -m build --wheel --outdir dist/ .
+
+            in-toto-record stop \
+              --step-name wheel \
+              --key signing_key \
+              --key-type ed25519 \
+              --products dist/tuf-${version}-py3-none-any.whl \
+              --metadata-directory .in_toto
+
+            rm signing_key
+
         env:
           HATCH_BUILD_HOOK_ENABLE_CUSTOM: true
           HATCH_IN_TOTO_KEY: ${{ secrets.HATCH_IN_TOTO_KEY }}

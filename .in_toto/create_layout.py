@@ -44,7 +44,3 @@ for build in ["sdist", "wheel"]:
     # Sign layouts in CLI
     # in-toto-sign -g 8ba69b87d43be294f23e812089a2ad3c07d962e8 -f sdist.layout
     # in-toto-sign -g 8ba69b87d43be294f23e812089a2ad3c07d962e8 -f wheel.layout
-
-# Verify with sdist and wheel links in same dir
-# in-toto-verify --layout sdist.layout --gpg 8ba69b87d43be294f23e812089a2ad3c07d962e8
-# in-toto-verify --layout sdist.layout --gpg 8ba69b87d43be294f23e812089a2ad3c07d962e8
