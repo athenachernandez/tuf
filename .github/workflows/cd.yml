@@ -42,7 +42,7 @@ jobs:
           # Build and generate signed attestions with in-toto CLI
 
           # Make signing key available to in-toto commands
-          echo "$IN_TOTO_KEY" > .in_toto/key
+          echo -n "$IN_TOTO_KEY" > .in_toto/key
 
           # Define patterns for files that need not be recorded as materials below
           exclude=('__pycache__' 'build' 'htmlcov' '.?*' '*~' '*.egg-info' '*.pyc')
@@ -60,7 +60,6 @@ jobs:
             --products dist/tuf-${version}.tar.gz \
             --exclude ${exclude[@]} \
             --metadata-directory .in_toto \
-            --verbose \
             -- python3 -m build --sdist --outdir dist/ .
 
           # Build wheel and record all files in CWD as materials and the build artifact
@@ -73,7 +72,6 @@ jobs:
             --products dist/tuf-${version}-py3-none-any.whl \
             --exclude ${exclude[@]} dist/tuf-${version}.tar.gz \
             --metadata-directory .in_toto \
-            --verbose \
             -- python3 -m build --wheel --outdir dist/ .
 
           # Remove signing key file
