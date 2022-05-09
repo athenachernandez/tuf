@@ -152,7 +152,7 @@ details).*
 ## User verification (TODO)
 
 The verification instructions above assume that the maintainer tag and build
-attestations are available to the verifier and that the verifier knows the keys to
+attestations are available to the verifier, and that the verifier knows the keys to
 verify the layout root signatures. For user verification the following items need to be
 resolved:
 
