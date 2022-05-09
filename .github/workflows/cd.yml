@@ -56,7 +56,6 @@ jobs:
             --step-name sdist \
             --key .in_toto/key \
             --key-type ed25519 \
-            --password "$IN_TOTO_KEY_PW" \
             --materials . \
             --products dist/tuf-${version}.tar.gz \
             --exclude ${exclude[@]} \
@@ -70,7 +69,6 @@ jobs:
             --step-name wheel \
             --key .in_toto/key \
             --key-type ed25519 \
-            --password "$IN_TOTO_KEY_PW" \
             --materials . \
             --products dist/tuf-${version}-py3-none-any.whl \
             --exclude ${exclude[@]} dist/tuf-${version}.tar.gz \
