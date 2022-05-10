@@ -56,6 +56,13 @@ Source = "https://github.com/theupdateframework/python-tuf"
 [tool.hatch.version]
 path = "tuf/__init__.py"
 
+[tool.hatch.build.hooks.custom]
+enable-by-default = false
+path = ".in_toto/hatch_with_in_toto.py"
+dependencies = [
+  "in-toto[pynacl]"
+]
+
 [tool.hatch.build.targets.sdist]
 include = [
   "/docs",

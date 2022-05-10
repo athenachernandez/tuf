@@ -63,32 +63,17 @@ in-toto-run \
 
 ## Build
 
-Call `python3 -m build --sdist ...` and `python3 -m build --wheel ...` with `in-toto` as
-shown to create two signed attestations, recording the names and hashes of files in cwd
-as *materials*, and the name and hash of each respective build artifact as product. The
-attestations are written to `.in_toto/sdist.<signing keyid>.link` and
-`.in_toto/wheel.<signing keyid>.link`.
+Call `python3 -m build -wheel --sdist ...` with in-toto hatch plugin enabled to create
+signed attestations, recording the names and hashes of files in cwd as *materials*, and
+the name and hash of each respective build artifact as product. The attestations are
+written to `.in_toto/sdist.<signing keyid>.link` and `.in_toto/wheel.<signing
+keyid>.link`.
 
 ```bash
-in-toto-run \
-  --step-name sdist \
-  --gpg ${signing_key} \
-  --materials . \
-  --products dist/tuf-${version}.tar.gz \
-  --exclude ${exclude[@]} \
-  --metadata-directory .in_toto \
-  -- python3 -m build --sdist --outdir dist/ .
-```
+export HATCH_BUILD_HOOK_ENABLE_CUSTOM=true
+export HATCH_IN_TOTO_GPG_KEYID=${signing_key}
 
-```bash
-in-toto-run \
-  --step-name wheel \
-  --gpg ${signing_key} \
-  --materials . \
-  --products dist/tuf-${version}-py3-none-any.whl \
-  --exclude ${exclude[@]} dist/tuf-${version}.tar.gz \
-  --metadata-directory .in_toto \
-  -- python3 -m build --wheel --outdir dist/ .
+python3 -m build --sdist --wheel --outdir dist/ .
 ```
 
 ## Verify
